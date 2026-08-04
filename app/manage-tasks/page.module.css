@@ -40,5 +40,23 @@
 
 .taskCard p{
     margin-bottom: 9px;
-    
+
+}
+
+.editBtn, .archveBtn{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.editBtn{
+    background-color: rgb(42,1,23);
+    color: white;
+}
+
+.archveBtn{
+    background-color: pink;
+    color: rgb(42,1,23);
 }

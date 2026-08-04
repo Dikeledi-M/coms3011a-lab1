@@ -78,3 +78,12 @@
 
 
 }
+
+.showTasksBtn{
+  padding: 15px 15px;
+  border-radius: 30px;
+  background-color: rgb(253, 125, 204);
+  font-size: large;
+  font-family:'Times New Roman', Times, serif
+
+}

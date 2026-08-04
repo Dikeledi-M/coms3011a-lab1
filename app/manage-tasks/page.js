@@ -29,6 +29,16 @@ export default function TasksPage(){
             <p>Topic: {task.topic}</p>
             <p>Due Date: {task.due_date}</p>
             <p>Status: {task.status}</p>
+
+            <div className={styles.taskActions}>
+                <button className={styles.editBtn}>
+                    Edit
+                </button>
+
+                <button className={styles.archiveBtn}>
+                    Archive
+                </button>
+            </div>
             
         </div>
     ));
