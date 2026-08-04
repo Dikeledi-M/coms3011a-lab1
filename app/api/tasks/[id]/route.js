@@ -41,3 +41,23 @@ export async function PUT(request, {params}) {
     
 }
 
+export async function PATCH(request, {params}){
+    const {id} = await params;
+    
+    const result = db.prepare("UPDATE task SET archived = 1 WHERE id = ?").run(id);
+
+    if(result.changes == 1){
+        return NextResponse.json({
+            message: "Task archived successfully!"
+        });
+    }else{
+        return NextResponse.json(
+            {
+                message: "Task not found!"
+            },
+            {
+                status: 404
+            }
+        );
+    }
+}

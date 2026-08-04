@@ -24,6 +24,21 @@ export default function TasksPage(){
 
     }, [])
 
+    async function  handleArchive(id) {
+        const response = await fetch(`/api/tasks/${id}`,{
+            method: "PATCH"
+        });
+
+        const data = await response.json();
+
+        if (response.ok){
+            alert(data.message);
+            window.location.reload();
+        }else{
+            alert("Failed to archive task!");
+        } 
+    }
+
     const taskList = tasks.map((task)=>(
         <div className={styles.taskCard} key = {task.id}>
             <h2>{task.title}</h2>
@@ -39,6 +54,14 @@ export default function TasksPage(){
                 >
                     Edit
                 </Link>
+
+                <button
+                    className={styles.archiveBtn}
+                    onClick={()=> handleArchive(task.id)}
+                >
+                Archive
+
+                </button>
 
             </div>
             
