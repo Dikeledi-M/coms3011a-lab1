@@ -42,8 +42,14 @@
     margin-bottom: 9px;
 
 }
+.taskActions{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 
-.editBtn, .archveBtn{
+}
+
+.editBtn, .archiveBtn{
     padding: 10px 25px;
     border: none;
     border-radius: 7px;
