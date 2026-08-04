@@ -2,7 +2,9 @@
 
 import {useState} from "react";
 
-import styles from "./page.module.css"
+import styles from "./page.module.css";
+
+import Link from "next/link";
 
 
 export default function Home(){
@@ -153,6 +155,9 @@ export default function Home(){
           </button>
 
         </form>
+        <Link href="/manage-tasks" className={styles.showTasksBtn}>
+          Show All Tasks
+        </Link>
 
       </div>
     </main>
