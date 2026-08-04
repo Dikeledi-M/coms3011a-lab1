@@ -6,6 +6,8 @@ import { useEffect } from "react";
 
 import { useState } from "react";
 
+import Link from "next/link";
+
 export default function TasksPage(){
     const [tasks, setTasks] = useState([]);
 
@@ -31,13 +33,13 @@ export default function TasksPage(){
             <p>Status: {task.status}</p>
 
             <div className={styles.taskActions}>
-                <button className={styles.editBtn}>
+                <Link 
+                    href={`/manage-tasks/edit/${task.id}`}
+                    className={styles.editBtn}
+                >
                     Edit
-                </button>
+                </Link>
 
-                <button className={styles.archiveBtn}>
-                    Archive
-                </button>
             </div>
             
         </div>
