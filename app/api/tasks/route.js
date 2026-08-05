@@ -32,10 +32,24 @@ export async function POST(request) {
   }
 }
 
-export async function GET(){
+export async function GET(request){
 
-    const tasks = db.prepare("SELECT * FROM task").all();
+    const {searchParams} = new URL(request.url);
+    const filter = searchParams.get("filter");
 
+    let tasks;
+    if(filter === "archived"){
+        tasks = db.prepare("SELECT * FROM task WHERE archived = 1").all();
+    }
+    else if (filter === "active"){
+        tasks = db.prepare("SELECT * FROM task WHERE archived = 0").all();
+    }
+    else{
+        tasks = db.prepare("SELECT * FROM task").all();
+
+    }
+
+    
     return NextResponse.json(tasks);
 
 }

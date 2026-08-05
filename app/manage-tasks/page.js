@@ -10,10 +10,11 @@ import Link from "next/link";
 
 export default function TasksPage(){
     const [tasks, setTasks] = useState([]);
+    const[filter, setFilter] = useState("active");
 
     useEffect(() =>{
         async function fetchTasks(){
-            const response = await fetch('/api/tasks');
+            const response = await fetch(`/api/tasks?filter=${filter}`);
             const data = await response.json();
 
             setTasks(data);
@@ -22,11 +23,17 @@ export default function TasksPage(){
         fetchTasks();
 
 
-    }, [])
+    }, [filter])
 
     async function  handleArchive(id) {
         const response = await fetch(`/api/tasks/${id}`,{
-            method: "PATCH"
+            method: "PATCH",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                action: "archive"
+            })
         });
 
         const data = await response.json();
@@ -39,6 +46,29 @@ export default function TasksPage(){
         } 
     }
 
+    async function handleUnarchive(id){
+        const response = await fetch(`/api/tasks/${id}`,{
+            method: "PATCH",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({
+                action: "unarchive"
+            })
+        });
+
+        const data = await response.json();
+        if(response.ok){
+            alert(data.message);
+            window.location.reload();
+
+        }else{
+            alert("Failed to unarchive task!")
+        }
+    }
+
+   
+
     const taskList = tasks.map((task)=>(
         <div className={styles.taskCard} key = {task.id}>
             <h2>{task.title}</h2>
@@ -48,6 +78,8 @@ export default function TasksPage(){
             <p>Status: {task.status}</p>
 
             <div className={styles.taskActions}>
+                {task.archived == 0 && (
+                <>
                 <Link 
                     href={`/manage-tasks/edit/${task.id}`}
                     className={styles.editBtn}
@@ -62,6 +94,20 @@ export default function TasksPage(){
                 Archive
 
                 </button>
+                
+                </>
+            )}
+
+            {task.archived === 1 &&(
+                <button
+                    className={styles.archiveBtn}
+                    onClick={()=>handleUnarchive(task.id)}
+                >
+                    Unarchive
+
+                </button>
+            )}
+                
 
             </div>
             
@@ -71,6 +117,21 @@ export default function TasksPage(){
     return(
         <main className={styles.page}>
             <h1 className={styles.title}>My Tasks</h1>
+             <div className={styles.filters}>
+
+                <button onClick={() => setFilter("active")}>
+                    Active Tasks
+                </button>
+
+                <button onClick={() => setFilter("archived")}>
+                    Archived Tasks
+                </button>
+
+                <button onClick={() => setFilter("all")}>
+                    All Tasks
+                </button>
+
+            </div>
             <div className={styles.taskList}>
                 {taskList}
             </div>

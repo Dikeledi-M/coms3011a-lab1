@@ -56,7 +56,6 @@
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
-    display: inline-block;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -75,4 +74,46 @@ button.archiveBtn{
 .archiveBtn{
     background-color: rgb(245, 102, 176);
     color: rgb(42,1,23);
+}
+
+.filters{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filters button{
+    padding: 12px 25px;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.filters button:nth-child(1){
+    background-color: rgb(42,1,23);
+    color: white;
+}
+
+.filters button:nth-child(2){
+    background-color: rgb(245, 102, 176);
+    color: rgb(42,1,23);
+}
+
+.filters button:nth-child(3){
+    background-color: rgb(229,227,227);
+    color: rgb(42,1,23);
+    border: 2px solid pink;
+}
+
+.filters button:hover{
+    opacity: 0.85;
+}
+
+.clickedBtn{
+    background-color: rgb(0, 0, 0);
+    color: rgb(248, 245, 247);
+
 }
