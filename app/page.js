@@ -156,8 +156,10 @@ export default function Home(){
 
         </form>
         <Link href="/manage-tasks" className={styles.showTasksBtn}>
-          Show All Tasks
+          Show Tasks
         </Link>
+
+
 
       </div>
     </main>
