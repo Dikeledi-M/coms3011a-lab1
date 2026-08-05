@@ -43,21 +43,34 @@ export async function PUT(request, {params}) {
 
 export async function PATCH(request, {params}){
     const {id} = await params;
-    
-    const result = db.prepare("UPDATE task SET archived = 1 WHERE id = ?").run(id);
+    const {action} = await request.json();
 
-    if(result.changes == 1){
-        return NextResponse.json({
-            message: "Task archived successfully!"
-        });
-    }else{
+    let result;
+
+    if (action === "archive"){
+        result = db.prepare("UPDATE task SET archived = 1 WHERE id = ?").run(id);
+
+    }
+    else if (action === "unarchive"){
+        result = db.prepare("UPDATE task SET archived = 0 WHERE id = ?").run(id);
+    }
+    else{
         return NextResponse.json(
-            {
-                message: "Task not found!"
-            },
-            {
-                status: 404
-            }
+            {message: "Invalid request!"},
+            {status: 400}
         );
     }
+
+    if (result.changes === 1){
+        return NextResponse.json({
+            message: `Task ${action}d successfully!`
+        });
+    }
+    else{
+        return NextResponse.json(
+            {message: "Task Not Found!"},
+            {status: 404}
+        );
+    }
+    
 }
