@@ -11,6 +11,7 @@ import Link from "next/link";
 export default function TasksPage(){
     const [tasks, setTasks] = useState([]);
     const[filter, setFilter] = useState("active");
+    const [sortBy, setSortBy] = useState("due_date");
 
     useEffect(() =>{
         async function fetchTasks(){
@@ -116,13 +117,13 @@ export default function TasksPage(){
 
     let message;
     if (filter === "active"){
-        message = "These are your active tasks";
+        message = "These are your active tasks.";
     }
     else if (filter === "archived"){
-        message = "These are your archived tasks";
+        message = "These are your archived tasks.";
     }
     else{
-        message = "These are all your tasks";
+        message = "These are all your tasks.";
     }
 
     return(
@@ -143,6 +144,21 @@ export default function TasksPage(){
                 <button onClick={() => setFilter("all")}>
                     All Tasks
                 </button>
+
+            </div>
+            <div className={styles.sortCard}>
+                <label>
+                    Sort By:
+                    <select
+                    value = {sortBy}
+                    onChange = {(e)=> setSortBy(e.target.value)}
+                    >
+                        <option value = "due_date">Due Date</option>
+                        <option value = "topic">Topic</option>
+                        <option value = "status">Status</option>
+                        
+                    </select>
+                </label>
 
             </div>
             <p className={styles.taskMessage}>{message}</p>

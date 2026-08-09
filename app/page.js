@@ -146,7 +146,7 @@ export default function Home(){
             >
               <option>Select the status of your task </option>
               <option>Todo</option>
-              <option>In Progress</option>
+              <option>In-Progress</option>
               <option>Complete</option>
             </select>
           </label>
