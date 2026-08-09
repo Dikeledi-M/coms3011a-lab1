@@ -114,12 +114,25 @@ export default function TasksPage(){
         </div>
     ));
 
+    let message;
+    if (filter === "active"){
+        message = "These are your active tasks";
+    }
+    else if (filter === "archived"){
+        message = "These are your archived tasks";
+    }
+    else{
+        message = "These are all your tasks";
+    }
+
     return(
         <main className={styles.page}>
             <h1 className={styles.title}>My Tasks</h1>
+            <p className={styles.pageMessage}>Manage And Keep Track Of Your Tasks. </p>
              <div className={styles.filters}>
 
-                <button onClick={() => setFilter("active")}>
+                <button 
+                    onClick={() => setFilter("active")}>
                     Active Tasks
                 </button>
 
@@ -132,6 +145,8 @@ export default function TasksPage(){
                 </button>
 
             </div>
+            <p className={styles.taskMessage}>{message}</p>
+
             <div className={styles.taskList}>
                 {taskList}
             </div>
