@@ -14,7 +14,7 @@
     font-weight: bold;
     color: rgb(42,1,23);
     font-size: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .taskList{
@@ -62,9 +62,7 @@
     font-size: 16px;
     font-family: inherit;
 }
-button.archiveBtn{
-    appearance: none;
-}
+
 
 .editBtn{
     background-color: rgb(42,1,23);
@@ -116,4 +114,23 @@ button.archiveBtn{
     background-color: rgb(0, 0, 0);
     color: rgb(248, 245, 247);
 
+}
+
+.taskMessage{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    opacity: 0.7;
+    font-weight: 700px;
+}
+
+.pageMessage{
+    text-align: center;
+    font-size: 20px;
+    font-style: oblique;
+    font-weight: 700px;
+    opacity: 0.8;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
