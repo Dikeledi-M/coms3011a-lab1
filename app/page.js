@@ -38,6 +38,11 @@ export default function Home(){
   async function handleSubmit(e){
     e.preventDefault();
 
+    if (!title || !description || !topic || !due_date || !status){
+      alert("Please fill in all required fields before submitting!");
+      return;
+    }
+
     const task = {
       title: title,
       description: description,
