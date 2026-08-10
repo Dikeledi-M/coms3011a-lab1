@@ -145,7 +145,7 @@ export default function Home(){
               onChange = {handleStatusChange}
             >
               <option>Select the status of your task </option>
-              <option>Todo</option>
+              <option>ToDo</option>
               <option>In-Progress</option>
               <option>Complete</option>
             </select>
