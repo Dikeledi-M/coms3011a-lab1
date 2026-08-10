@@ -2,11 +2,13 @@
   "name": "coms3011a-lab1",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "setup-db": "node scripts/setup-db.js"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.2",
