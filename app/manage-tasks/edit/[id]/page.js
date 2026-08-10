@@ -50,7 +50,7 @@ export default function EditTaskPage({params}){
 
         if(response.ok){
             alert(data.message);
-            window.location.reload();
+            window.location.href = '/manage-tasks';
         }else{
             alert("Failed to update task!");
         }
@@ -84,8 +84,8 @@ export default function EditTaskPage({params}){
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                     >
-                        <option>Todo</option>
-                        <option>In Progress</option>
+                        <option>ToDo</option>
+                        <option>In-Progress</option>
                         <option>Complete</option>
                     </select>
 
