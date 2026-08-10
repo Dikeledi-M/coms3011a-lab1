@@ -157,3 +157,19 @@
     border-radius: 6px;
 
 }
+
+.overdue{
+    color: red;
+}
+
+.dueToday{
+    color: orange;
+}
+
+.dueSoon{
+    color: green;
+}
+
+.onTrack{
+    color: blue;
+}
