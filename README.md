@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# COMS3011A Lab 1 - Todo Application
 
-## Getting Started
+A local-first todo application built using Next.js and SQLite. The application allows a single user to create, edit, archive, view, and organise tasks. All task information is stored locally using SQLite and remains available after restarting the application.
 
-First, run the development server:
+---
+
+## Third-Party Code
+
+### Next.js
+Next.js was used as the web application framework because it provides the structure for building the application, including routing and server-side functionality.
+
+### React
+React was used to build the user interface and manage interactive elements such as task forms, filters, and sorting options.
+
+### better-sqlite3
+better-sqlite3 was used to connect the application to SQLite. It provides a simple way to perform database operations using Node.js while keeping the application local-first.
+
+### Vitest
+Vitest was used for automated testing because it provides a lightweight testing framework for JavaScript applications and allows the task functionality to be tested using a temporary database.
+
+---
+
+## Database Design
+
+The application uses a SQLite database with one table called `task`.
+
+### Task Table
+
+| Column | Type | Description |
+|---|---|---|
+| id | INTEGER | Unique identifier for each task and primary key |
+| title | TEXT | The name/title of the task |
+| description | TEXT | Additional details about the task |
+| due_date | TEXT | The deadline of the task |
+| topic | TEXT | The category or topic of the task |
+| status | TEXT | The current status of the task (`Todo`, `In-Progress`, or `Complete`) |
+| archived | INTEGER | Indicates whether a task is archived (`0` for active and `1` for archived) |
+
+The application only requires one table because tasks do not have relationships with other entities.
+
+Tasks are not deleted when archived. Instead, the `archived` column is updated, allowing archived tasks to remain available for viewing.
+
+Overdue tasks are not stored as a separate field or status. They are calculated dynamically using the task due date and current date.
+
+---
+
+## Running It
+
+### Requirements
+
+- Node.js v24.13.1
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Dikeledi-M/coms3011a-lab1.git
+cd coms3011a-lab1
+
+```
+
+### Install Dependencies
+Install all required packages by running: 
+
+```bash
+npm install
+
+```
+
+### Setup Database
+Create the SQLite database using the setup script:
+
+```bash
+npm run setup-db
+
+```
+
+### Run the Application
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+```
+The application will be available at
+
+```bash
+http://localhost:3000
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run Tests
+Run the automated tests using:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm test
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+The tests use a temporary/throwaway in-memory SQLite database, so they do not depend on existing database data.
 
-## Learn More
+## Features
+The application supports:
+- Creating tasks with:
+  - Title
+  - Description
+  - Due date
+  - Topic
+  -  Status
 
-To learn more about Next.js, take a look at the following resources:
+- Editing existing tasks
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Archiving tasks without deleting them
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Viewing:
+  - Active Tasks
+  - Archived Tasks
+  - All tasks
 
-## Deploy on Vercel
+- Sorting tasks by:
+  - Title
+  - Topic
+  - Status
+  - Due date
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Indicating overdue tasks while keeping overdue separate from task statuses.
+- Persistent storage using SQLite
+  
