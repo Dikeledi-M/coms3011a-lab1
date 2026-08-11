@@ -20,6 +20,17 @@ Vitest was used for automated testing because it provides a lightweight testing 
 
 ---
 
+## AI Transcripts
+
+AI tools were used during the development of this application for assistance with understanding concepts, discussing implementation decisions, debugging, and testing.
+
+The AI transcripts documenting these interactions are included in the `docs/` directory:
+
+* [AI Transcript Text](./docs/AI%20Transcript%20Text.pdf) — readable text versions of the AI conversations.
+* [AI Transcripts Screenshots](./docs/AI%20TRANSCRIPTS%20SCREENSHOTS.pdf) — screenshots of the AI conversations.
+
+---
+
 ## Database Design
 
 The application uses a SQLite database with one table called `task`.
